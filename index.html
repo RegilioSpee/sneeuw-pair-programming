@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sam & Regilio | NAVIDAD</title>
+    <link rel="stylesheet" href="estilo.css" />
+    <meta name="author" content="Regilio & Sam" />
+  </head>
+
+  <body>
+    <script src="nieve.js"></script>
+    <script src="pantalla completa
+    .js"></script>
+    <h1>Feliz navidad</h1>
+    <div class="wrapper">
+      <h2 align="center"><a href="#" class="effect-shine">Regilio & Sam</a></h2>
+    </div>
+    <script>
+      class Copodenieve {
+        constructor(horizontaal, verticaal, snelheid) {
+          this._hori = horizontaal;
+          this._vert = verticaal;
+          this._snelh = snelheid;
+          this._nieve;
+        }
+        maken() {
+          this._nieve = document.createElement("div");
+          this._nieve.className = "copodenieve";
+          this._nieve.style.top = this._vert + "vh";
+          this._nieve.style.left = this._hori + "vw";
+
+          let size = Math.random() * 5 + 3;
+
+          this._nieve.style.width = size + "em";
+          this._nieve.style.height = size + "em";
+          this._nieve.innerHTML = codeSVGcop;
+          document.body.appendChild(this._nieve);
+          this.val();
+        }
+        // method om copo de nieve te laten vallen
+        verplaatsen() {
+          if (window.innerHeight < parseInt(this._nieve.style.top, 10)) {
+            this._vert = 0;
+            this._nieve.style.top = this._vert + "px";
+          } else {
+            this._vert += this._snelh;
+            this._nieve.style.top = this._vert + "px";
+          }
+        }
+        val() {
+          let bewegen = requestAnimationFrame(() => {
+            this.verplaatsen();
+            this.val();
+          });
+        }
+      }
+
+      for (let i = 0; i < 69; i++) {
+        window["copodenieve" + i] = new Copodenieve(
+          Math.random() * 100,
+          Math.random() * 100,
+          1 + Math.random() * 4
+        );
+        window["copodenieve" + i].maken();
+      }
+    </script>
+  </body>
+</html>
